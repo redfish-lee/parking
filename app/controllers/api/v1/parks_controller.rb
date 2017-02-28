@@ -5,6 +5,8 @@ class Api::V1::ParksController < Api::V1::ApplicationController
   # GET /parks.json
   def index
     @parks = Park.all
+
+    render json: @parks
   end
 
   # GET /parks/1
@@ -59,6 +61,6 @@ class Api::V1::ParksController < Api::V1::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def park_params
-      params.require(:park).permit(:name, :floor, :number, :phone)
+      params.permit(:name, :floor, :number, :phone)
     end
 end

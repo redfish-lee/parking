@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   constraints format: :json do
     namespace :api do
       namespace :v1 do
-        resources :parks
+        resources :parks, param: :name
       end
     end
   end
