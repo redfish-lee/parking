@@ -1,1 +1,1 @@
-json.extract! @park, :id, :name, :floor, :number, :phone, :created_at, :updated_at
+json.partial! "parks/park", park: @park

@@ -1,49 +1,48 @@
 require 'test_helper'
 
-class ParksControllerTest < ActionController::TestCase
+class ParksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @park = parks(:one)
   end
 
   test "should get index" do
-    get :index
+    get parks_url
     assert_response :success
-    assert_not_nil assigns(:parks)
   end
 
   test "should get new" do
-    get :new
+    get new_park_url
     assert_response :success
   end
 
   test "should create park" do
     assert_difference('Park.count') do
-      post :create, park: { floor: @park.floor, name: @park.name, number: @park.number, phone: @park.phone }
+      post parks_url, params: { park: { floor: @park.floor, name: @park.name, number: @park.number, phone: @park.phone } }
     end
 
-    assert_redirected_to park_path(assigns(:park))
+    assert_redirected_to park_url(Park.last)
   end
 
   test "should show park" do
-    get :show, id: @park
+    get park_url(@park)
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @park
+    get edit_park_url(@park)
     assert_response :success
   end
 
   test "should update park" do
-    patch :update, id: @park, park: { floor: @park.floor, name: @park.name, number: @park.number, phone: @park.phone }
-    assert_redirected_to park_path(assigns(:park))
+    patch park_url(@park), params: { park: { floor: @park.floor, name: @park.name, number: @park.number, phone: @park.phone } }
+    assert_redirected_to park_url(@park)
   end
 
   test "should destroy park" do
     assert_difference('Park.count', -1) do
-      delete :destroy, id: @park
+      delete park_url(@park)
     end
 
-    assert_redirected_to parks_path
+    assert_redirected_to parks_url
   end
 end
