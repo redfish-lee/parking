@@ -5,32 +5,6 @@ class ParksController < ApplicationController
   # GET /parks.json
   def index
     @parks = Park.all
-    if params[:act] == 'delete'
-      @park = Park.find_by_name(params[:name])
-  	  if @park and @park.destroy
-  	    render :json => {rtn: 'success'} and return
-  	  else
-  	    render :json => {rtn: 'failed'} and return
-  	  end
-  	end
-  	if params[:act] == 'search'
-  	  @park = Park.find_by_name(params[:name])
-  	  if @park
-  	    render :json => {rtn: 'success'} and return
-  	  else
-  	    render :json => {rtn: 'failed'} and return
-  	  end
-  	end
-  	if params[:act] == 'create'
-      @park = Park.new park_params
-      if @park.invalid?
-        render :json => {rtn: 'failed: name exists' } and return
-      elsif not @park.overlap? and @park.save
-        render :json => {rtn: 'success'} and return
-      else
-        render :json => {rtn: 'failed: position exists'} and return
-      end
-  	end
   end
 
   # GET /parks/1
