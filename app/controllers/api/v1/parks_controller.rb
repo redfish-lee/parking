@@ -46,7 +46,7 @@ class Api::V1::ParksController < Api::V1::ApplicationController
   # DELETE /parks/1
   # DELETE /parks/1.json
   def destroy
-    if @park.destroy
+    if @park and @park.destroy
       render json: { rtn: 'success' }
     else
       render json: { rtn: 'failed' }
