@@ -5,39 +5,6 @@ class ParksController < ApplicationController
   # GET /parks.json
   def index
     @parks = Park.all
-    if params[:act] == 'delete'
-	  @park = Park.find_by_name(params[:name])
-  	  if @park and @park.destroy
-  	    render :json => {rtn: 'success'} and return
-  	  else
-  	    render :json => {rtn: 'failed'} and return
-  	  end
-  	end
-  	if params[:act] == 'search'
-  	  @park = Park.find_by_name(params[:name])
-  	  if @park
-  	    render :json => {rtn: 'success'} and return
-  	  else
-  	    render :json => {rtn: 'failed'} and return
-  	  end
-  	end
-  	if params[:act] == 'create' 
-      @park = Park.new
-  	  @park.name = params[:name] if params[:name]
-  	  @park.floor = params[:floor] if params[:floor]
-  	  @park.number = params[:number] if params[:number]
-  	  @park.phone = params[:phone] if params[:phone]
-  	  if not Park.find_by_name(params[:name])
-        if not Park.where(:floor => params[:floor], :number => params[:number]).exists? and @park.save
-          render :json => {rtn: 'success'} and return
-        else
-          render :json => {rtn: 'failed: position exists'} and return
-        end
-      else
-        render :json => {rtn: 'failed: name exists'} and return
-      end
-
-  	end
   end
 
   # GET /parks/1
