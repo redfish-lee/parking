@@ -22,8 +22,8 @@ class ParksController < ApplicationController
   	  end
   	end
   	if params[:act] == 'create'
-  	  if not Park.find_by_name(params[:name])
       @park = Park.new park_params
+  	  if @park.valid?
         if not Park.where(:floor => params[:floor], :number => params[:number]).exists? and @park.save
           render :json => {rtn: 'success'} and return
         else
