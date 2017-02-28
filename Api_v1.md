@@ -42,7 +42,7 @@ GET /api/v1/parks
 #### variable
 
 | params | type | example |
-| - | - | - |
+| --- | --- | --- |
 | name | String | akiicat |
 | floor | Integer | 1 |
 | number | Integer | 1 |
@@ -118,7 +118,7 @@ GET /api/v1/parks/akiicat
 #### variable
 
 | params | type | example |
-| - | - | - |
+| --- | --- | --- |
 | name | String | akiicat |
 | floor | Integer | 1 |
 | number | Integer | 1 |
