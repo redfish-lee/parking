@@ -1,3 +1,3 @@
 class ParkSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :floor, :number, :phone
 end
