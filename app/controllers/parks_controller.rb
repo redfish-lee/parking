@@ -23,16 +23,13 @@ class ParksController < ApplicationController
   	end
   	if params[:act] == 'create'
       @park = Park.new park_params
-  	  if @park.valid?
-        if not Park.where(:floor => params[:floor], :number => params[:number]).exists? and @park.save
-          render :json => {rtn: 'success'} and return
-        else
-          render :json => {rtn: 'failed: position exists'} and return
-        end
+      if @park.invalid?
+        render :json => {rtn: 'failed: name exists' } and return
+      elsif not @park.overlap? and @park.save
+        render :json => {rtn: 'success'} and return
       else
-        render :json => {rtn: 'failed: name exists'} and return
+        render :json => {rtn: 'failed: position exists'} and return
       end
-
   	end
   end
 
